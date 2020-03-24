@@ -3,3 +3,4 @@
 |  名称 | 解释   |
 | ------------ | ------------ |
 | springbootgetmail | 邮件发送  |
+| weixing| 基于SpringBoot实现公众号开发  |
