@@ -4,3 +4,5 @@
 | ------------ | ------------ |
 | springbootgetmail | 邮件发送  |
 | weixing| 基于SpringBoot实现公众号开发  |
+| springbootmyabtis| SpringBoot整合Myabtis(XML形式)  |
+
