@@ -24,15 +24,7 @@ public class MessageDispatcher {
             txtmsg.setCreateTime(new Date().getTime());
             txtmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
             System.out.println(context.substring(context.length()-1));
-            if(context.substring(context.length()-1).equalsIgnoreCase("！")){
-                StringBuilder sb = new StringBuilder(context);
-                sb.replace(context.length()-1,context.length(),"?");
-                System.out.println(sb);
-                fasong =""+sb;
-                txtmsg.setContent(fasong);
-            }else {
-                txtmsg.setContent("菜鸟");
-            }
+            txtmsg.setContent("菜鸟");
 
             return MessageTool.textMessageToXml(txtmsg);
         }

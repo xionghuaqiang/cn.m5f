@@ -4,6 +4,7 @@ package cn.m5f.handler;
 import cn.m5f.Server.CheckUtil;
 import cn.m5f.utils.MessageDispatcher;
 import cn.m5f.utils.MessageUtil;
+import cn.m5f.utils.SubscriptionMessageUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,8 @@ import java.util.Map;
 
 @RestController
 public class HandlerLogin {
+
+    Map<String, String> map;
     /**
      * signature 表示微信加密签名，
      * signature 结合了开发者填写的 token
@@ -83,7 +86,7 @@ public class HandlerLogin {
     @PostMapping(value = "/verify_wx_token",produces = "application/xml;charset=utf-8")
     public String handler(HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
-        Map<String, String> map = MessageUtil.xmlToMap(request);
+        map = MessageUtil.xmlToMap(request);
         String msgType = map.get("MsgType");
         System.out.println(msgType);
         if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgType)) {
@@ -92,5 +95,17 @@ public class HandlerLogin {
             return MessageDispatcher.processMessage(map);
         }
     }
+
+    @PostMapping("/create")
+    public void create(){
+        String APPID ="wxa35e09fd29ab34e6";
+        String APP_SECRET ="8c2f01103a0f260a426c11c643ed1d72";
+        String openid = map.get("FromUserName"); //用户 openid
+        System.out.println(openid);
+        String serviceName = "快打卡";
+        String orderNo = "21物联网工程1班";
+        SubscriptionMessageUtil.sendOrderMsg(APPID, APP_SECRET, openid, orderNo, serviceName);
+    }
+
 
 }
